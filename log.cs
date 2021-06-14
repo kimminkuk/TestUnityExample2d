@@ -41,13 +41,54 @@ public class log : Enemy
                 Vector3 temp = Vector3.MoveTowards(transform.position, 
                     target.position, 
                     moveSpeed * Time.deltaTime);
-                myRigidbody.MovePosition(temp);
 
+                changeAnim(temp - transform.position);
+                myRigidbody.MovePosition(temp);
+                
                 ChangeState(EnemyState.walk);
+                anim.SetBool("wakeUp", true);
             }
-        
+        }
+        else if (Vector3.Distance(target.position, transform.position) > chaseRadius)
+        {
+            anim.SetBool("wakeUp", false);
         }
     }
+
+    private void SetAnimFloat(Vector2 setVector)
+    {
+        anim.SetFloat("moveX", setVector.x);
+        anim.SetFloat("moveY", setVector.y);
+    }
+
+    private void changeAnim(Vector2 direction)
+    {
+        if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            Debug.Log("x is greater");
+            if(direction.x > 0)
+            {
+                SetAnimFloat(Vector2.right);
+            }
+            else if (direction.x <0)
+            {
+                SetAnimFloat(Vector2.left);
+            }
+        } 
+        else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
+        {
+            Debug.Log("y is greater");
+            if(direction.y > 0)
+            {
+                SetAnimFloat(Vector2.up);
+            } 
+            else if (direction.y < 0)
+            {
+                SetAnimFloat(Vector2.down);
+            }
+        }
+    }
+
     private void ChangeState(EnemyState newState)
     {
         if (currentState != newState)
