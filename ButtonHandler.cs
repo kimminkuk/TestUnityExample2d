@@ -12,13 +12,11 @@ public class ButtonHandler : MonoBehaviour
 
     public void PointerDown()
     {
-        Debug.Log("GAMEBUTTON PointerDown\n");
         attackbutton = true;
     }
 
     public void PointerUp()
     {
-        Debug.Log("GAMEBUTTON PointerUp\n");
         attackbutton = false;
     }
 }
