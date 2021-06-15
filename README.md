@@ -1,6 +1,6 @@
 # TestUnityExample2d
 
-Youtube Search: Part 24-Hurtboxes
+Youtube Search: Part 23 - Scriptable Objects to make a Signal System: Make a game like Zelda using Unity and C#
 
 
 # Study Video
