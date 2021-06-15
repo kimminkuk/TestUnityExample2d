@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public MovementJoyStick movementJoyStick;
     public ButtonHandler buttonHandler;
+
+    private float joystickDirection_x;
+    private float joystickDirection_y;
     void Start()
     {
         currentState = PlayerState.walk;
@@ -63,9 +66,32 @@ public class PlayerMovement : MonoBehaviour
             if(movementJoyStick.joystickVec.y != 0)
             {
                 myRigidbody.velocity = new Vector2(movementJoyStick.joystickVec.x * speed, movementJoyStick.joystickVec.y * speed);
-            
-                animator.SetFloat("moveX", myRigidbody.velocity.x);
-                animator.SetFloat("moveY", myRigidbody.velocity.y);
+                if (myRigidbody.velocity.x >= 0.5f)
+                {
+                    joystickDirection_x = 1;
+                }
+                else if (myRigidbody.velocity.x <= -0.5f)
+                {
+                    joystickDirection_x = -1;
+                }
+                else
+                {
+                    joystickDirection_x = 0;
+                }
+                if (myRigidbody.velocity.y >= 0.5f)
+                {
+                    joystickDirection_y = 1;
+                }
+                else if (myRigidbody.velocity.y <= -0.5f)
+                {
+                    joystickDirection_y = -1;
+                }
+                else
+                {
+                    joystickDirection_y = 0;
+                }
+                animator.SetFloat("moveX", joystickDirection_x);
+                animator.SetFloat("moveY", joystickDirection_y);
                 animator.SetBool("moving", true);
             }
             else

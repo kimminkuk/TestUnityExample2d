@@ -14,7 +14,6 @@ public class MovementJoyStick : MonoBehaviour
     public int x_pos = 0;
     public int y_pos = 0;
 
-
     // Start is called before the first frame update
     void Start()
     {

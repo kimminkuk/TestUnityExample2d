@@ -5,21 +5,12 @@ using UnityEngine;
 public class Knockback : MonoBehaviour
 {
 
-    [SerializeField]
-    private float thrust;
+    //[SerializeField]
+    //private float thrust;
 
+    public float thrust;
     public float knockTime;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float damage;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -40,10 +31,10 @@ public class Knockback : MonoBehaviour
                 Vector2 difference = hit.transform.position - transform.position;
                 difference = difference.normalized * thrust;
                 hit.AddForce(difference, ForceMode2D.Impulse);
-                if (other.gameObject.CompareTag("enemy"))
+                if (other.gameObject.CompareTag("enemy") && other.isTrigger)
                 {
                     hit.GetComponent<Enemy>().currentState = EnemyState.stagger;
-                    other.GetComponent<Enemy>().Knock(hit, knockTime);
+                    other.GetComponent<Enemy>().Knock(hit, knockTime, damage);
                 }
                 if (other.gameObject.CompareTag("Player"))
                 {

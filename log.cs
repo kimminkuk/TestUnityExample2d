@@ -65,7 +65,6 @@ public class log : Enemy
     {
         if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            Debug.Log("x is greater");
             if(direction.x > 0)
             {
                 SetAnimFloat(Vector2.right);
@@ -77,7 +76,6 @@ public class log : Enemy
         } 
         else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
         {
-            Debug.Log("y is greater");
             if(direction.y > 0)
             {
                 SetAnimFloat(Vector2.up);
