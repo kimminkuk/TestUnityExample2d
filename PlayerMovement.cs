@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public MovementJoyStick movementJoyStick;
     public ButtonHandler buttonHandler;
+    public FloatValue currentHealth;
+    public Signal playerHealthSignal;
 
     private float joystickDirection_x;
     private float joystickDirection_y;
@@ -32,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
 
-#if true //for Mobile
+#if false //for Mobile
         speed = 5f;
 #else //for pc
         speed = 15f;
@@ -43,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if true //for Mobile
+#if false //for Mobile
         //if(movementJoyStick.joystickVec.y != 0)
         //{
         //    if (currentState == PlayerState.walk || currentState == PlayerState.idle)
@@ -159,9 +161,17 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
     }
 
-    public void Knock(float knockTime)
+    public void Knock(float knockTime, float damage)
     {
-        StartCoroutine(KnockCo(knockTime));
+        currentHealth.RuntimeValue -= damage;
+        playerHealthSignal.Raise();
+        if (currentHealth.RuntimeValue > 0)
+        {
+            StartCoroutine(KnockCo(knockTime));
+        } else
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     private IEnumerator KnockCo(float knockTime)
