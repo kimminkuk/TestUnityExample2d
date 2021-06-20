@@ -16,16 +16,43 @@ public class Door : Interactable
     [Header("Door variables")]
     public DoorType thisDoorType;
     public bool open = false;
+    public Inventory playerInventory;
+    public SpriteRenderer doorSprite;
+    public BoxCollider2D physicsCollider;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+#if false
+
+#else
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(playerInRange && thisDoorType == DoorType.key)
+            {
+                //Does the player have a key?
+                if(playerInventory.numberOfKeys > 0)
+                {
+                    //Remove a player key
+                    playerInventory.numberOfKeys--;
+                    //If so, then call the open method
+                    Open();
+                }
+            }
+        }
+#endif
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Open()
     {
-        
+        //Turn off the door's sprite renderer
+        doorSprite.enabled = false;
+        //Set open to true
+        open = true;
+        //turn off the door's box collider
+        physicsCollider.enabled = false;
+    }
+    public void Close()
+    {
+
     }
 }
