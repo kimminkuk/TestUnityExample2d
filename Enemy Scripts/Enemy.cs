@@ -18,7 +18,8 @@ public class Enemy : MonoBehaviour
     public string enemyName;
     public int baseAttack;
     public float moveSpeed;
-
+    public GameObject deathEffect;
+    private bool DeathCheck;
     private void Awake()
     {
         health = maxHealth.intialValue;
@@ -29,14 +30,28 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            DeathEffect();
             this.gameObject.SetActive(false);
+        }
+    }
+
+    private void DeathEffect()
+    {
+        if(deathEffect != null)
+        {
+            GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
+            DeathCheck = true;
         }
     }
 
     public void Knock(Rigidbody2D myRigidbody, float knockTime, float damage)
     {
-        StartCoroutine(KnockCo(myRigidbody, knockTime));
-        TakeDamge(damage);
+        if (!DeathCheck) // StartCoroutine Error... maybe Attack Twice, gameobejct destroy but attack again
+        {
+            StartCoroutine(KnockCo(myRigidbody, knockTime));
+            TakeDamge(damage);
+        }
     }
 
     private IEnumerator KnockCo(Rigidbody2D myRigidbody, float knockTime)
