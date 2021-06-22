@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public VectorValue startingPosition;
     public Inventory playerInventory;
     public SpriteRenderer receivedItemSprite;
+    public Signal playerHit;
 
     private float joystickDirection_x;
     private float joystickDirection_y;
@@ -66,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         //    animator.SetBool("moving", false);
         //}
 
-        if(currentState == PlayerState.walk || currentState == PlayerState.idle)
+        if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
             if(movementJoyStick.joystickVec.y != 0)
             {
@@ -117,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         // }
 #else //for pc
         //Is the player in the interaction
-        if(currentState == PlayerState.interact)
+        if (currentState == PlayerState.interact)
         {
             return;
         }
@@ -206,6 +207,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator KnockCo(float knockTime)
     {
+        playerHit.Raise();
         if (myRigidbody != null)
         {
             yield return new WaitForSeconds(knockTime);
