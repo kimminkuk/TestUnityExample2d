@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
 {
     public bool playerInRange;
     public Signal context;
-
+    public ButtonHandler buttonHandler;
     // Start is called before the first frame update
     void Start()
     {

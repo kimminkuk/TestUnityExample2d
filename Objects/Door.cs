@@ -19,13 +19,27 @@ public class Door : Interactable
     public Inventory playerInventory;
     public SpriteRenderer doorSprite;
     public BoxCollider2D physicsCollider;
-
+    
     private void Update()
     {
-#if false
-
+#if false 
+        if(buttonHandler.attackbutton)
+        {
+            if (playerInRange && thisDoorType == DoorType.key)
+            {
+                //Does the player have a key?
+                if (playerInventory.numberOfKeys > 0)
+                {
+                    //Remove a player key
+                    playerInventory.numberOfKeys--;
+                    //If so, then call the open method
+                    Open();
+                }
+            }
+        
+        }
 #else
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if(playerInRange && thisDoorType == DoorType.key)
             {

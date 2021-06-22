@@ -23,7 +23,19 @@ public class TresureChest : Interactable
     void Update()
     {
 #if false //for Mobile
-
+        if (buttonHandler.attackbutton && playerInRange)
+        {
+            if (!isOpen)
+            {
+                //Open the chest
+                OpenChest();
+            }
+            else
+            {
+                //Chest is already open
+                ChestAlreadyOpen();
+            }
+        }
 #else //for PC
         if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
         {
