@@ -5,18 +5,29 @@ using UnityEngine.UI;
 
 public class TresureChest : Interactable
 {
+    [Header("Contents")]
     public Item contents;
     public Inventory playerInventory;
     public bool isOpen;
+    public BoolValue storedOpen;
+
+    [Header("Signal and Dialog")]
     public Signal raiseItem;
     public GameObject diaglogBox;
     public Text dialogText;
+
+    [Header("Animator")]
     private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        isOpen = storedOpen.RuntimeValue;
+        if(isOpen)
+        {
+            anim.SetBool("opened", true);
+        }
     }
 
     // Update is called once per frame
@@ -70,6 +81,7 @@ public class TresureChest : Interactable
         // Set the chest to opened
         isOpen = true;
         anim.SetBool("opend", true);
+        storedOpen.RuntimeValue = true;
     }
     public void ChestAlreadyOpen()
     {
