@@ -12,11 +12,26 @@ public class ButtonHandler : MonoBehaviour
 
     public void PointerDown()
     {
-        attackbutton = true;
+        if (!attackbutton)
+        {
+            attackbutton = true;
+        }
     }
 
     public void PointerUp()
     {
         attackbutton = false;
+    }
+
+    private IEnumerator OnAttackTime()
+    {
+        attackbutton = true;
+        yield return null;
+    }
+
+    private IEnumerator OffAttackTime()
+    {
+        attackbutton = false;
+        yield return null;
     }
 }
