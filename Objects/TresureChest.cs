@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TresureChest : Interactable
 {
     [Header("Contents")]
+    public PlayerState currentState;
     public Item contents;
     public Inventory playerInventory;
     public bool isOpen;
@@ -26,15 +27,15 @@ public class TresureChest : Interactable
         isOpen = storedOpen.RuntimeValue;
         if(isOpen)
         {
-            anim.SetBool("opened", true);
+            anim.SetBool("opend", true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-#if false //for Mobile
-        if (buttonHandler.attackbutton && playerInRange)
+#if UNITY_ANDROID //for Mobile
+        if (buttonHandler.attackbutton && playerInRange )
         {
             if (!isOpen)
             {

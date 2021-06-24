@@ -22,8 +22,8 @@ public class Door : Interactable
     
     private void Update()
     {
-#if false 
-        if(buttonHandler.attackbutton)
+#if UNITY_ANDROID 
+        if (buttonHandler.attackbutton)
         {
             if (playerInRange && thisDoorType == DoorType.key)
             {

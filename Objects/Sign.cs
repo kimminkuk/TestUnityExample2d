@@ -21,8 +21,19 @@ public class Sign : Interactable
     // Update is called once per frame
     void Update()
     {
-#if false //for Mobile
-
+#if UNITY_ANDROID //for Mobile
+        if (buttonHandler.attackbutton && playerInRange)
+        {
+            if (diaglogBox.activeInHierarchy)
+            {
+                diaglogBox.SetActive(false);
+            }
+            else
+            {
+                diaglogBox.SetActive(true);
+                diaglogText.text = diaglog;
+            }
+        }
 #else //for PC
         if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
         {
