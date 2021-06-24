@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
         transform.position = startingPosition.initialValue;
-#if false //for Mobile
+#if UNITY_ANDROID //for Mobile
         speed = 5f;
 #else //for pc
         speed = 15f;
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if false //for Mobile
+#if UNITY_ANDROID //for Mobile
         //if(movementJoyStick.joystickVec.y != 0)
         //{
         //    if (currentState == PlayerState.walk || currentState == PlayerState.idle)
@@ -66,17 +66,20 @@ public class PlayerMovement : MonoBehaviour
         //    myRigidbody.velocity = Vector2.zero;
         //    animator.SetBool("moving", false);
         //}
-
+        if (currentState == PlayerState.interact)
+        {
+            return;
+        }
         if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
             if(movementJoyStick.joystickVec.y != 0)
             {
                 myRigidbody.velocity = new Vector2(movementJoyStick.joystickVec.x * speed, movementJoyStick.joystickVec.y * speed);
-                if (myRigidbody.velocity.x >= 0.5f)
+                if (myRigidbody.velocity.x >= 0.4f)
                 {
                     joystickDirection_x = 1;
                 }
-                else if (myRigidbody.velocity.x <= -0.5f)
+                else if (myRigidbody.velocity.x <= -0.4f)
                 {
                     joystickDirection_x = -1;
                 }
@@ -84,11 +87,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     joystickDirection_x = 0;
                 }
-                if (myRigidbody.velocity.y >= 0.5f)
+                if (myRigidbody.velocity.y >= 0.4f)
                 {
                     joystickDirection_y = 1;
                 }
-                else if (myRigidbody.velocity.y <= -0.5f)
+                else if (myRigidbody.velocity.y <= -0.4f)
                 {
                     joystickDirection_y = -1;
                 }
