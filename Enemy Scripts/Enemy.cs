@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         transform.position = homePosition;
+        health = maxHealth.intialValue;
+        currentState = EnemyState.idle;
     }
 
     private void TakeDamge(float damage)
