@@ -1,6 +1,6 @@
 # TestUnityExample2d
 
-Part 49 - Loot Tables: Make a game like Zelda using Unity and C#
+Part 50 - More Small Fixes: Make a game like Zelda using Unity and C#
 
 # Study Video
 
