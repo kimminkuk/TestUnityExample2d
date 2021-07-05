@@ -39,7 +39,8 @@ public class Door : Interactable
         
         }
 #else
-        if (Input.GetKeyDown(KeyCode.Space))
+        //if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("attack"))
         {
             if(playerInRange && thisDoorType == DoorType.key)
             {

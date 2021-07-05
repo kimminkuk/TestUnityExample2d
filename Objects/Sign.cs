@@ -35,7 +35,8 @@ public class Sign : Interactable
             }
         }
 #else //for PC
-        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
+        //if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
+        if (Input.GetButtonDown("attack") && playerInRange)
         {
             if (diaglogBox.activeInHierarchy)
             {

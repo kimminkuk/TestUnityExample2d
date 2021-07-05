@@ -49,9 +49,10 @@ public class TresureChest : Interactable
             }
         }
 #else //for PC
-        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
+        //        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
+        if (Input.GetButtonDown("attack") && playerInRange)
         {
-            if(!isOpen)
+            if (!isOpen)
             {
                 //Open the chest
                 OpenChest();
