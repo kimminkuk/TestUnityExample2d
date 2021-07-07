@@ -1,6 +1,10 @@
 # TestUnityExample2d
 
-Part 50 - More Small Fixes: Make a game like Zelda using Unity and C#
+Part 51 - Melee Enemies: make a game like Zelda using Unity and C#
+
+# Bug
+1. Cinemachine Camera Room Transition
+2. Mobile Joystick move and Button
 
 # Study Video
 
