@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("moveY", -1);
         transform.position = startingPosition.initialValue;
 #if UNITY_ANDROID //for Mobile
-        speed = 5f;
+        speed = 3.5f;
 #else //for pc
         speed = 15f;
 #endif
@@ -50,75 +50,56 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 #if UNITY_ANDROID //for Mobile
-        //if(movementJoyStick.joystickVec.y != 0)
-        //{
-        //    if (currentState == PlayerState.walk || currentState == PlayerState.idle)
-        //    {
-        //        myRigidbody.velocity = new Vector2(movementJoyStick.joystickVec.x * speed, movementJoyStick.joystickVec.y * speed);
-        //
-        //        animator.SetFloat("moveX", myRigidbody.velocity.x);
-        //        animator.SetFloat("moveY", myRigidbody.velocity.y);
-        //        animator.SetBool("moving", true);
-        //    }
-        //}
-        //else
-        //{
-        //    myRigidbody.velocity = Vector2.zero;
-        //    animator.SetBool("moving", false);
-        //}
         if (currentState == PlayerState.interact)
         {
             return;
         }
-        if (currentState == PlayerState.walk || currentState == PlayerState.idle)
-        {
-            if(movementJoyStick.joystickVec.y != 0)
-            {
-                myRigidbody.velocity = new Vector2(movementJoyStick.joystickVec.x * speed, movementJoyStick.joystickVec.y * speed);
-                if (myRigidbody.velocity.x >= 0.4f)
-                {
-                    joystickDirection_x = 1;
-                }
-                else if (myRigidbody.velocity.x <= -0.4f)
-                {
-                    joystickDirection_x = -1;
-                }
-                else
-                {
-                    joystickDirection_x = 0;
-                }
-                if (myRigidbody.velocity.y >= 0.4f)
-                {
-                    joystickDirection_y = 1;
-                }
-                else if (myRigidbody.velocity.y <= -0.4f)
-                {
-                    joystickDirection_y = -1;
-                }
-                else
-                {
-                    joystickDirection_y = 0;
-                }
-                animator.SetFloat("moveX", joystickDirection_x);
-                animator.SetFloat("moveY", joystickDirection_y);
-                animator.SetBool("moving", true);
-            }
-            else
-            {
-                myRigidbody.velocity = Vector2.zero;
-                animator.SetBool("moving", false);
-            }
-        }
-
         if (buttonHandler.attackbutton && currentState != PlayerState.attack 
             && currentState != PlayerState.stagger)
         {
+            //Attack Action with Not Move Motion
+            myRigidbody.velocity = Vector2.zero;
             StartCoroutine(AttackCo());
         }
-        // else if (currentState == PlayerState.walk)
-        // {
-        //     UpdateAnimationAndMove();
-        // }
+        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+        {
+            if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+            {
+                if (movementJoyStick.joystickVec.y != 0)
+                {
+                    myRigidbody.velocity = new Vector2(movementJoyStick.joystickVec.x * speed, movementJoyStick.joystickVec.y * speed);
+                    if (myRigidbody.velocity.x >= 0.4f)
+                    {
+                        joystickDirection_x = 1;
+                    }
+                    else if (myRigidbody.velocity.x <= -0.4f)
+                    {
+                        joystickDirection_x = -1;
+                    }
+                    else
+                    {
+                        joystickDirection_x = 0;
+                    }
+                    if (myRigidbody.velocity.y >= 0.95f)
+                    {
+                        joystickDirection_y = 1;
+                    }
+                    else if (myRigidbody.velocity.y <= -0.95f)
+                    {
+                        joystickDirection_y = -1;
+                    }
+                    else
+                    {
+                        joystickDirection_y = 0;
+                    }
+                }
+                else
+                {
+                    myRigidbody.velocity = Vector2.zero;
+                }
+            }
+                UpdateAnimationAndMove_Mobile();
+        }
 #else //for pc
         //Is the player in the interaction
         if (currentState == PlayerState.interact)
@@ -181,6 +162,20 @@ public class PlayerMovement : MonoBehaviour
             MoveCharacter();
             animator.SetFloat("moveX", change.x);
             animator.SetFloat("moveY", change.y);
+            animator.SetBool("moving", true);
+        }
+        else
+        {
+            animator.SetBool("moving", false);
+        }
+    }
+
+    void UpdateAnimationAndMove_Mobile()
+    {
+        if (myRigidbody.velocity != Vector2.zero)
+        {
+            animator.SetFloat("moveX", joystickDirection_x);
+            animator.SetFloat("moveY", joystickDirection_y);
             animator.SetBool("moving", true);
         }
         else
