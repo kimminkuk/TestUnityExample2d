@@ -10,7 +10,6 @@ public class RoomMove : MonoBehaviour
     public Vector2 RoomMove_MinPos;
     public Vector3 playerChange;
     private CameraMovement cam;
-
     public bool needText;
     public string placeName;
     public GameObject text;
@@ -36,6 +35,7 @@ public class RoomMove : MonoBehaviour
             //cam.maxPosition = RoomMove_MaxPos;
             cam.maxPosition += cameraChange;
             cam.minPosition += cameraChange;
+
             other.transform.position += playerChange;
 
             if (needText)
