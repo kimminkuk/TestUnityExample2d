@@ -12,21 +12,25 @@ public class ButtonHandler : MonoBehaviour
 
     public void PointerDown()
     {
-        if (!attackbutton)
-        {
-            attackbutton = true;
-        }
+        //if (!attackbutton)
+        //{
+        //    attackbutton = true;
+        //}
+        StartCoroutine(OnAttackTime());
     }
 
     public void PointerUp()
     {
-        attackbutton = false;
+        //    attackbutton = false;
+        StartCoroutine(OffAttackTime());
     }
 
     private IEnumerator OnAttackTime()
     {
         attackbutton = true;
         yield return null;
+        attackbutton = false;
+        yield return new WaitForSeconds(0.3f);
     }
 
     private IEnumerator OffAttackTime()
