@@ -11,6 +11,7 @@ public class PatrolLog : log
 
     public override void CheckDistance()
     {
+        anim.SetBool("wakeUp", true);
         if (Vector3.Distance(target.position, transform.position) <= chaseRadius
             && Vector3.Distance(target.position, transform.position) > attackRadius)
         {
@@ -23,7 +24,7 @@ public class PatrolLog : log
 
                 changeAnim(temp - transform.position);
                 myRigidbody.MovePosition(temp);
-                anim.SetBool("wakeUp", true);
+                //anim.SetBool("wakeUp", true);
             }
         }
         else if (Vector3.Distance(target.position, transform.position) > chaseRadius)
