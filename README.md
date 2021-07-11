@@ -3,8 +3,9 @@
 Part 58 - A Pause Menu: Make a game like Zelda using Unity and C#
 
 # Bug
-1. Cinemachine Camera Room Transition
-2. Mobile Joystick move and Button
+1. Cinemachine Camera Room Transition : ok
+2. Mobile Joystick move and Button : Not bad
+3. Tresure Box Open Error
 
 # Study Video
 
