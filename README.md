@@ -1,6 +1,6 @@
 # TestUnityExample2d
 
-Part 51 - Melee Enemies: make a game like Zelda using Unity and C#
+Part 58 - A Pause Menu: Make a game like Zelda using Unity and C#
 
 # Bug
 1. Cinemachine Camera Room Transition
@@ -9,10 +9,5 @@ Part 51 - Melee Enemies: make a game like Zelda using Unity and C#
 # Study Video
 
 
-
-
-https://user-images.githubusercontent.com/27074717/124141579-7e291980-dac4-11eb-94fe-ed7fd03599ad.mp4
-
-
-
+https://user-images.githubusercontent.com/27074717/125199384-f223a880-e2a0-11eb-9441-6adfe6e604d2.mp4
 
