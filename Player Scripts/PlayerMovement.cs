@@ -211,6 +211,8 @@ public class PlayerMovement : MonoBehaviour
         if (change != Vector3.zero)
         {
             MoveCharacter();
+            change.x = Mathf.Round(change.x);
+            change.y = Mathf.Round(change.y);
             animator.SetFloat("moveX", change.x);
             animator.SetFloat("moveY", change.y);
             animator.SetBool("moving", true);
@@ -225,6 +227,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (myRigidbody.velocity != Vector2.zero)
         {
+            joystickDirection_x = Mathf.Round(joystickDirection_x);
+            joystickDirection_y = Mathf.Round(joystickDirection_y);
             animator.SetFloat("moveX", joystickDirection_x);
             animator.SetFloat("moveY", joystickDirection_y);
             animator.SetBool("moving", true);
