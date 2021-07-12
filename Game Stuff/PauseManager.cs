@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,10 +19,7 @@ public class PauseManager : MonoBehaviour
     void Update()
     {
 #if UNITY_ANDROID
-        if()
-        {
 
-        }
 #else
         if(Input.GetButtonDown("pause"))
         {
@@ -29,6 +27,7 @@ public class PauseManager : MonoBehaviour
         }
 #endif
     }
+
     public void ChangePause()
     {
         isPaused = !isPaused;
