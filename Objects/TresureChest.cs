@@ -35,10 +35,12 @@ public class TresureChest : Interactable
     void Update()
     {
 #if UNITY_ANDROID //for Mobile
-        if (buttonHandler.attackbutton && playerInRange )
+        if (buttonHandler.btn_tresure && playerInRange && Input.touchCount == 0)
+        //if(buttonHandler.interactable_button && playerInRange )
         {
             if (!isOpen)
             {
+                Debug.Log("OpenChest\n");
                 //Open the chest
                 OpenChest();
             }
@@ -64,6 +66,29 @@ public class TresureChest : Interactable
             }
         }
 #endif
+    }
+
+    public void OpenChest_Mobile()
+    {
+        if (playerInRange)
+        {
+            // Dialog Window on
+            diaglogBox.SetActive(true);
+            // dialog text = contest text
+            dialogText.text = contents.itemDescription;
+            // add contents to the inventory
+            playerInventory.AddItem(contents);
+            playerInventory.currentItem = contents;
+
+            // Raise the signal to the player to animate
+            raiseItem.Raise();
+            // raise the context clue
+            context.Raise();
+            // Set the chest to opened
+            isOpen = true;
+            anim.SetBool("opend", true);
+            storedOpen.RuntimeValue = true;
+        }
     }
 
     public void OpenChest()
