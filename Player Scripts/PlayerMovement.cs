@@ -155,6 +155,23 @@ public class PlayerMovement : MonoBehaviour
             currentState = PlayerState.walk;
         }
     }
+
+    private IEnumerator AttackCo_Mobile()
+    {
+        if (currentState != PlayerState.interact)
+        {
+            animator.SetBool("attacking", true);
+            currentState = PlayerState.attack;
+            yield return null;
+            animator.SetBool("attacking", false);
+            yield return new WaitForSeconds(0.3f);
+            if (currentState != PlayerState.interact)
+            {
+                currentState = PlayerState.walk;
+            }
+        }
+    }
+
     private IEnumerator SecondAttackCo()
     {
         //animator.SetBool("attacking", true);
@@ -192,12 +209,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (currentState != PlayerState.interact)
             {
+                Debug.Log("RaiseItem 1");
                 animator.SetBool("receive item", true);
                 currentState = PlayerState.interact;
                 receivedItemSprite.sprite = playerInventory.currentItem.itemSprite;
             }
             else
             {
+                Debug.Log("RaiseItem 2");
                 animator.SetBool("receive item", false);
                 currentState = PlayerState.idle;
                 receivedItemSprite.sprite = null;
