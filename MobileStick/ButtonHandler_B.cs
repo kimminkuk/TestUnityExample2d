@@ -12,9 +12,9 @@ public class ButtonHandler_B : MonoBehaviour
 
     public void PointerDown()
     {
-        StartCoroutine(OnAttackTime_B());
+        StartCoroutine( OnAttackTime_B() );
     }
-
+    
     public void PointerUp()
     {
         StartCoroutine(OffAttackTime_B());

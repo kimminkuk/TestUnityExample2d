@@ -9,20 +9,17 @@ public class ButtonHandler : MonoBehaviour
     // Start is called before the first frame update
 
     public bool attackbutton;
-
+    public bool btn_tresure;
     public void PointerDown()
     {
-        //if (!attackbutton)
-        //{
-        //    attackbutton = true;
-        //}
         StartCoroutine(OnAttackTime());
+        btn_tresure = true;
     }
 
     public void PointerUp()
     {
-        //    attackbutton = false;
         StartCoroutine(OffAttackTime());
+        btn_tresure = false;
     }
 
     private IEnumerator OnAttackTime()
