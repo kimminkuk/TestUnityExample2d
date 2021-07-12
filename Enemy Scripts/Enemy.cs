@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Death Effects")]
     public GameObject deathEffect;
-    private bool DeathCheck;
+    //Not Use private bool DeathCheck;
     private float deathEffectDelay = 1f;
     public LootTable thisLoot;
     
@@ -37,9 +37,10 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         health = maxHealth.intialValue;
+        currentState = EnemyState.idle;
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         transform.position = homePosition;
         health = maxHealth.intialValue;
@@ -79,13 +80,14 @@ public class Enemy : MonoBehaviour
         {
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(effect, deathEffectDelay);
-            DeathCheck = true;
+            //Not Use DeathCheck = true;
         }
     }
 
     public void Knock(Rigidbody2D myRigidbody, float knockTime, float damage)
     {
-        if (!DeathCheck) // StartCoroutine Error... maybe Attack Twice, gameobejct destroy but attack again
+        //if (!DeathCheck) // StartCoroutine Error... maybe Attack Twice, gameobejct destroy but attack again
+        //this check is Error to respawn enemy not exec knock func.. 
         {
             StartCoroutine(KnockCo(myRigidbody, knockTime));
             TakeDamge(damage);
