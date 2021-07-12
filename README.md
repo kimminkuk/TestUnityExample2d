@@ -5,7 +5,9 @@ Part 58 - A Pause Menu: Make a game like Zelda using Unity and C#
 # Bug
 1. Cinemachine Camera Room Transition : ok
 2. Mobile Joystick move and Button : Not bad
-3. Tresure Box Open Error
+3. Enemy No die bug : ok
+4. Melee Enemy Damage bug : ok
+5. Tresure Box Open Error : Mobile Error...
 
 # Study Video
 
