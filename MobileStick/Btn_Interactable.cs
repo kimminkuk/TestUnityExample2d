@@ -7,13 +7,36 @@ using UnityEngine.EventSystems;
 public class Btn_Interactable : MonoBehaviour
 {
     public bool interactable_button;
+    public Btn_Interactable2 tmp;
     public void PointerDown()
     {
-        interactable_button = true;
+
     }
 
     public void PointerUp()
     {
+        //StartCoroutine(OnAttackTime_B());
+        if (!interactable_button)
+        {
+            interactable_button = true;
+            tmp.interactable_button2 = false;
+            Debug.Log("interactable_button = true;\n");
+        }
+        else
+        {
+            interactable_button = false;
+            tmp.interactable_button2 = false;
+            Debug.Log("interactable_button = false;\n");
+        }
+    }
+
+    private IEnumerator OnAttackTime_B()
+    {
+        interactable_button = true;
+        tmp.interactable_button2 = false;
+        yield return null;
         interactable_button = false;
+        tmp.interactable_button2 = false;
+        yield return new WaitForSeconds(0.3f);
     }
 }

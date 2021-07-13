@@ -13,13 +13,27 @@ public class ButtonHandler : MonoBehaviour
     public void PointerDown()
     {
         StartCoroutine(OnAttackTime());
-        btn_tresure = true;
+        //if (Input.touchCount == 0)
+        //{
+        //    btn_tresure = true;
+        //    Debug.Log("btn_tresure\n");
+        //}
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    attackbutton = true;
+        //    Debug.Log("attackbutton = true\n");
+        //}
     }
 
     public void PointerUp()
     {
         StartCoroutine(OffAttackTime());
-        btn_tresure = false;
+        //btn_tresure = false;
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    attackbutton = false;
+        //    Debug.Log("attackbutton = false;\n");
+        //}
     }
 
     private IEnumerator OnAttackTime()
