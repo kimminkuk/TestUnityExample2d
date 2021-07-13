@@ -217,6 +217,26 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 Debug.Log("RaiseItem 2");
+                if (currentState == PlayerState.walk)
+                {
+                    Debug.Log("PlayerState.walk)\n");
+                }
+                else if (currentState == PlayerState.attack)
+                {
+                    Debug.Log("PlayerState.attack\n");
+                }
+                else if (currentState == PlayerState.interact)
+                {
+                    Debug.Log("PlayerState.interact\n");
+                }
+                else if (currentState == PlayerState.stagger)
+                {
+                    Debug.Log("PlayerState.stagger\n");
+                }
+                else
+                {
+                    Debug.Log("PlayerState.idle\n");
+                }
                 animator.SetBool("receive item", false);
                 currentState = PlayerState.idle;
                 receivedItemSprite.sprite = null;
