@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
     public Signal context;
     public ButtonHandler buttonHandler;
     public Btn_Interactable Btn_Interactable;
+    public Btn_Interactable2 Btn_Interactable2;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,5 +38,10 @@ public class Interactable : MonoBehaviour
             //contextOff.Raise();
             playerInRange = false;
         }
+    }
+
+    public virtual void OpenChest_Mobile()
+    {
+
     }
 }

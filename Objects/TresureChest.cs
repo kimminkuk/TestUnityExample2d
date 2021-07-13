@@ -35,21 +35,42 @@ public class TresureChest : Interactable
     void Update()
     {
 #if UNITY_ANDROID //for Mobile
-        if (buttonHandler.btn_tresure && playerInRange && Input.touchCount == 0)
-        //if(buttonHandler.interactable_button && playerInRange )
-        {
-            if (!isOpen)
-            {
-                Debug.Log("OpenChest\n");
-                //Open the chest
-                OpenChest();
-            }
-            else
-            {
-                //Chest is already open
-                ChestAlreadyOpen();
-            }
-        }
+         if (Btn_Interactable.interactable_button && playerInRange)
+         //if(buttonHandler.interactable_button && playerInRange )
+         {
+             if (!isOpen)
+             {
+                 Debug.Log("OpenChest\n");
+                 //Open the chest
+                 OpenChest();
+             } 
+             else
+             {
+                 if(Btn_Interactable2.interactable_button2) 
+                 {
+                     //Chest is already open
+                     Debug.Log("ChestAlreadyOpen\n");
+                     ChestAlreadyOpen();
+                 }
+             }
+         }
+
+        //if (Btn_Interactable.interactable_button && playerInRange)
+        ////if(buttonHandler.interactable_button && playerInRange )
+        //{
+        //    if (!isOpen)
+        //    {
+        //        //Open the chest
+        //        Debug.Log("OpenChest\n");
+        //        OpenChest();
+        //    }
+        //    else
+        //    {
+        //        //Chest is already open
+        //        Debug.Log("ChestAlreadyOpen\n");
+        //        ChestAlreadyOpen();
+        //    }
+        //}
 #else //for PC
         //        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
         if (Input.GetButtonDown("attack") && playerInRange)
@@ -57,18 +78,20 @@ public class TresureChest : Interactable
             if (!isOpen)
             {
                 //Open the chest
+                Debug.Log("OpenChest\n");
                 OpenChest();
             }
             else
             {
                 //Chest is already open
+                Debug.Log("ChestAlreadyOpen\n");
                 ChestAlreadyOpen();
             }
         }
 #endif
     }
 
-    public void OpenChest_Mobile()
+    public override void OpenChest_Mobile()
     {
         if (playerInRange)
         {
@@ -123,15 +146,19 @@ public class TresureChest : Interactable
         if (other.CompareTag("Player") && !other.isTrigger && !isOpen)
         {
             context.Raise();
+            Btn_Interactable.interactable_button = false;
             //contextOn.Raise();
             playerInRange = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !other.isTrigger && !isOpen)
+        if (other.CompareTag("Player") && !other.isTrigger)
         {
-            context.Raise();
+            if (!isOpen)
+            {
+                context.Raise();
+            }
             //contextOff.Raise();
             playerInRange = false;
         }
