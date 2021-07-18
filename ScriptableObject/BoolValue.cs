@@ -3,21 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//[CreateAssetMenu]
+//public class BoolValue : ScriptableObject, ISerializationCallbackReceiver
+//{
+//    public bool intialValue;
+//
+//    [HideInInspector]
+//    public bool RuntimeValue;
+//
+//    public void OnAfterDeserialize()
+//    {
+//        RuntimeValue = intialValue;
+//    }
+//
+//    public void OnBeforeSerialize()
+//    {
+//        
+//    }
+//}
+
 [CreateAssetMenu]
-public class BoolValue : ScriptableObject, ISerializationCallbackReceiver
+[System.Serializable]
+public class BoolValue : ScriptableObject
 {
-    public bool intialValue;
-
-    [HideInInspector]
+    public bool initialValue;
     public bool RuntimeValue;
-
-    public void OnAfterDeserialize()
-    {
-        RuntimeValue = intialValue;
-    }
-
-    public void OnBeforeSerialize()
-    {
-        
-    }
 }
