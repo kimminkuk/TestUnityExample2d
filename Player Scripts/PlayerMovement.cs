@@ -30,6 +30,14 @@ public class PlayerMovement : MonoBehaviour
     public Signal playerHit;
     public Signal reduceMagic;
 
+    [Header("IFrame stuff")]
+    public Color flashColor;
+    public Color regularColor;
+    public float flashDuration;
+    public int number0fFlashes;
+    public Collider2D triggerCollider;
+    public SpriteRenderer mySprite;
+
     [Header("Projectile Stuff")]
     public GameObject projectile;
     public Item bow;
@@ -302,10 +310,26 @@ public class PlayerMovement : MonoBehaviour
         playerHit.Raise();
         if (myRigidbody != null)
         {
+            StartCoroutine(FlashCo());
             yield return new WaitForSeconds(knockTime);
             myRigidbody.velocity = Vector2.zero;
             currentState = PlayerState.idle;
             myRigidbody.velocity = Vector2.zero;
         }
+    }
+
+    private IEnumerator FlashCo()
+    {
+        int temp = 0;
+        triggerCollider.enabled = false;
+        while(temp < number0fFlashes)
+        {
+            mySprite.color = flashColor;
+            yield return new WaitForSeconds(flashDuration);
+            mySprite.color = regularColor;
+            yield return new WaitForSeconds(flashDuration);
+            temp++;
+        }
+        triggerCollider.enabled = true;
     }
 }
