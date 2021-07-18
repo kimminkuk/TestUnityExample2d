@@ -19,10 +19,10 @@ public class Sign : Interactable
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
 #if UNITY_ANDROID //for Mobile
-        if (buttonHandler.attackbutton && playerInRange)
+        if (Btn_Interactable.interactable_button && playerInRange)
         {
             if (diaglogBox.activeInHierarchy)
             {
@@ -34,6 +34,7 @@ public class Sign : Interactable
                 diaglogText.text = diaglog;
             }
         }
+
 #else //for PC
         //if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
         if (Input.GetButtonDown("attack") && playerInRange)

@@ -31,6 +31,7 @@ public class TresureChest : Interactable
         }
     }
 
+
     // Update is called once per frame
     void Update()
     {
